@@ -79,7 +79,7 @@ def whirl(beep=False, disable=False, force=False, stream=sys.stdout):
             check_wordcount()
 
     """
-    return Spinher(beep, disable, force, stream)
+    return Whirl(beep, disable, force, stream)
 
 
 __version__ = "2021.2.dev1"
