@@ -1,3 +1,8 @@
+"""
+Spinher is a Python  based module for showing the user that the Command-Line Interface(CLI) is active.
+"""
+
+
 import sys
 import threading
 import itertools
