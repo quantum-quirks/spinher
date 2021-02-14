@@ -82,4 +82,4 @@ def spinher(beep=False, disable=False, force=False, stream=sys.stdout):
     return Spinher(beep, disable, force, stream)
 
 
-__version__ = "2021.02.dev1"
+__version__ = "2021.2.dev1"
