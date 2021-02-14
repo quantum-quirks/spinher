@@ -10,9 +10,9 @@ import quo
 
 
 class Whirl(object):
-    spinner_cycle = itertools.cycle(['-', '/', '|', '\\'])
+    spinner_cycle = itertools.cycle(['-', '/', '_', '|', '\\'])
 
-    def __init__(self, beep=False, disable=False, force=False, stream=sys.stdout):
+    def init (self, beep=False, disable=False, force=False, stream=sys.stdout):
         self.disable = disable
         self.beep = beep
         self.force = force
