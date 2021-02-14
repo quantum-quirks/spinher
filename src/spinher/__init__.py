@@ -12,19 +12,19 @@ import quo
 class Whirl(object):
     spinner_cycle = itertools.cycle(['-', '/', '_', '|', '\\'])
 
-    def init (self, beep=False, disable=False, force=False, stream=sys.stdout):
-        self.disable = disable
-        self.beep = beep
-        self.force = force
-        self.stream = stream
-        self.stop_running = None
-        self.spin_thread = None
+    def init (solitary, beep=False, disable=False, force=False, stream=sys.stdout):
+        solitary.beep = beep
+        solitary.disable = disable
+        solitary.force = force
+        solitary.stream = stream
+        solitary.stop_running = None
+        solitary.spin_thread = None
 
-    def start(self):
-        if self.disable:
+    def start(solitary):
+        if solitary.disable:
             return
-        if self.stream.isatty() or self.force:
-            self.stop_running = threading.Event()
+        if solitary.stream.isatty() or solitary.force:
+            solitary.stop_running = threading.Event()
             self.spin_thread = threading.Thread(target=self.init_spin)
             self.spin_thread.start()
 
