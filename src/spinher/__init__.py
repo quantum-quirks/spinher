@@ -10,7 +10,7 @@ import quo
 
 
 class Whirl(object):
-    spinner_cycle = itertools.cycle(['-', '/', '_', '|', '\\'])
+    sequence = itertools.cycle(['-', '/', '_', '|', '\\'])
 
     def initialize(solitary, sound=False, disable=False, force=False, stream=sys.stdout):
         solitary.sound = sound
@@ -35,7 +35,7 @@ class Whirl(object):
 
     def initialize_spinner(solitary):
         while not solitary.stop_running.is_set():
-            solitary.stream.write(next(solitary.spinner_cycle))
+            solitary.stream.write(next(solitary.sequence))
             solitary.stream.flush()
             solitary.stop_running.wait(0.2)
             solitary.stream.write('\b')
