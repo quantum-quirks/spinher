@@ -82,6 +82,4 @@ def spinher(beep=False, disable=False, force=False, stream=sys.stdout):
     return Spinher(beep, disable, force, stream)
 
 
-from ._version import get_versions
-__version__ = get_versions()['version']
-del get_versions
+__version__ = "2021.02.dev1"
