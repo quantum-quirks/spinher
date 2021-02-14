@@ -25,7 +25,7 @@ class Whirl(object):
             return
         if solitary.stream.isatty() or solitary.force:
             solitary.stop_running = threading.Event()
-            solitary.spin_thread = threading.Thread(target=solitary.init_spin)
+            solitary.spin_thread = threading.Thread(target=solitary.initialize_spinner)
             solitary.spin_thread.start()
 
     def stop(solitary):
