@@ -9,7 +9,7 @@ import itertools
 import quo
 
 
-class Spinher(object):
+class Whirl(object):
     spinner_cycle = itertools.cycle(['-', '/', '|', '\\'])
 
     def __init__(self, beep=False, disable=False, force=False, stream=sys.stdout):
@@ -55,7 +55,7 @@ class Spinher(object):
         return False
 
 
-def spinher(beep=False, disable=False, force=False, stream=sys.stdout):
+def whirl(beep=False, disable=False, force=False, stream=sys.stdout):
     """This function creates a context manager that is used to display a
     spinner on stdout as long as the context has not exited.
 
