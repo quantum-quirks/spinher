@@ -25,35 +25,34 @@ class Whirl(object):
             return
         if solitary.stream.isatty() or solitary.force:
             solitary.stop_running = threading.Event()
-            self.spin_thread = threading.Thread(target=self.init_spin)
-            self.spin_thread.start()
+            solitary.spin_thread = threading.Thread(target=solitary.init_spin)
+            solitary.spin_thread.start()
 
-    def stop(self):
-        if self.spin_thread:
-            self.stop_running.set()
-            self.spin_thread.join()
+    def stop(solitary):
+        if solitary.spin_thread:
+            solitary.stop_running.set()
+            solitary.spin_thread.join()
 
-    def init_spin(self):
-        while not self.stop_running.is_set():
-            self.stream.write(next(self.spinner_cycle))
-            self.stream.flush()
-            self.stop_running.wait(0.2)
-            self.stream.write('\b')
-            self.stream.flush()
+    def init_spin(solitary):
+        while not solitary.stop_running.is_set():
+            solitary.stream.write(next(solitary.spinner_cycle))
+            solitary.stream.flush()
+            solitary.stop_running.wait(0.2)
+            solitary.stream.write('\b')
+            solitary.stream.flush()
 
-    def __enter__(self):
-        self.start()
-        return self
+    def __enter__(solitary):
+        solitary.start()
+        return solitary
 
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        if self.disable:
+    def __exit__(solitary, exc_type, exc_val, exc_tb):
+        if solitary.disable:
             return False
-        self.stop()
-        if self.beep:
-            self.stream.write('\7')
-            self.stream.flush()
+        solitary.stop()
+        if solitary.beep:
+            solitary.stream.write('\7')
+            solitary.stream.flush()
         return False
-
 
 def whirl(beep=False, disable=False, force=False, stream=sys.stdout):
     """This function creates a context manager that is used to display a
@@ -82,4 +81,4 @@ def whirl(beep=False, disable=False, force=False, stream=sys.stdout):
     return Whirl(beep, disable, force, stream)
 
 
-__version__ = "2021.2.dev2"
+__version__ = "2021.2.dev3"
