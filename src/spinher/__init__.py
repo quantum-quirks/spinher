@@ -12,8 +12,8 @@ import quo
 class Whirl(object):
     spinner_cycle = itertools.cycle(['-', '/', '_', '|', '\\'])
 
-    def init (solitary, beep=False, disable=False, force=False, stream=sys.stdout):
-        solitary.beep = beep
+    def initialize(solitary, sound=False, disable=False, force=False, stream=sys.stdout):
+        solitary.sound = sound
         solitary.disable = disable
         solitary.force = force
         solitary.stream = stream
@@ -33,7 +33,7 @@ class Whirl(object):
             solitary.stop_running.set()
             solitary.spin_thread.join()
 
-    def init_spin(solitary):
+    def initialize_spinner(solitary):
         while not solitary.stop_running.is_set():
             solitary.stream.write(next(solitary.spinner_cycle))
             solitary.stream.flush()
@@ -41,21 +41,21 @@ class Whirl(object):
             solitary.stream.write('\b')
             solitary.stream.flush()
 
-    def __enter__(solitary):
+    def enter(solitary):
         solitary.start()
         return solitary
 
-    def __exit__(solitary, exc_type, exc_val, exc_tb):
+    def exit(solitary, exc_type, exc_val, exc_tb):
         if solitary.disable:
             return False
         solitary.stop()
-        if solitary.beep:
+        if solitary.sound:
             solitary.stream.write('\7')
             solitary.stream.flush()
         return False
 
-def whirl(beep=False, disable=False, force=False, stream=sys.stdout):
-    return Whirl(beep, disable, force, stream)
+def whirl(sound=False, disable=False, force=False, stream=sys.stdout):
+    return Whirl(sound, disable, force, stream)
 
 
 __version__ = "2021.2.dev3"
