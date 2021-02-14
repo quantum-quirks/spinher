@@ -1,5 +1,5 @@
 """
-Spinher is a Python  based module for showing the user that the Command-Line Interface(CLI) is active.
+Spinher is a Python module which shows the user progress whenever a Command-Line application is launched. The `whirl()` function does all the magic.
 """
 
 
