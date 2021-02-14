@@ -82,4 +82,4 @@ def whirl(beep=False, disable=False, force=False, stream=sys.stdout):
     return Whirl(beep, disable, force, stream)
 
 
-__version__ = "2021.2.dev1"
+__version__ = "2021.2.dev2"
